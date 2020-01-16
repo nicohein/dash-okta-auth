@@ -1,4 +1,4 @@
-# Plotly Okta
+# Plotly Okta Auth
 
 The goal of this little project is to greate a plotly dashboard that authenticates 
 users with Okta.
