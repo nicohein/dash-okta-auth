@@ -1,13 +1,12 @@
-from flask import Flask, redirect, url_for, request, session
-from config import FLASK_SECRET_KEY, OKTA_BASE_URL, OKTA_CLIENT_ID, OKTA_CLIENT_SECRET
+from flask import Flask, session
+from config import FLASK_SECRET_KEY
 
 from dash_okta_auth.okta_oauth import OktaOAuth
 
 import dash
-import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 # configure app
 server = Flask(__name__)
@@ -24,7 +23,7 @@ auth = OktaOAuth(app)
 app.layout = html.Div(children=[
     html.H1(children="Private Dash App"),
 
-    html.Div(id='placeholder', style={'display':'none'}),
+    html.Div(id='placeholder', style={'display': 'none'}),
     html.Div(id='welcome'),
 
     dcc.Graph(
@@ -41,11 +40,13 @@ app.layout = html.Div(children=[
     )
 ])
 
+
 @app.callback(
     Output('welcome', 'children'),
     [Input('placeholder', 'children')]
 )
 def on_load(value):
+    # we need value for it to render (be in the tree)
     return "Welcome, {}!".format(session['email'])
 
 

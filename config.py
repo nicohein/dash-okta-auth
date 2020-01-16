@@ -15,4 +15,3 @@ OKTA_CLIENT_ID = get_env_variable('OKTA_CLIENT_ID')
 OKTA_CLIENT_SECRET = get_env_variable('OKTA_CLIENT_SECRET')
 
 OKTA_BASE_URL = get_env_variable('OKTA_BASE_URL')
-
